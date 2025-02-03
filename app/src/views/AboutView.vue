@@ -5,3 +5,5 @@
     <div></div>
   </body>
 </template>
+
+<style scoped></style>

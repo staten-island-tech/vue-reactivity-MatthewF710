@@ -1,10 +1,4 @@
 <script setup></script>
-
 <template>
-  <div>
-    <h1 class="text-9xl">We did it!</h1>
-    <h1>Test</h1>
-  </div>
+  <h1 class="text-9xl">Hellooooo</h1>
 </template>
-
-<style scoped></style>

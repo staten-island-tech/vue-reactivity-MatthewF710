@@ -1,4 +1,28 @@
 <script setup></script>
 <template>
-  <h1 class="text-9xl">Hellooooo</h1>
+  <div class="navbar w-[100%] bg-blue-500 static">
+    <details class="dropdown bg-blue-500">
+      <summary class="btn m-1 bg-base-200">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </summary>
+      <ul class="menu dropdown-content rounded-box z-[1] w-52 p-2 shadow">
+        <li><a>Filler</a></li>
+        <li><a>Ar</a></li>
+      </ul>
+    </details>
+    <h1 class="left-[50%]">Hello</h1>
+  </div>
 </template>

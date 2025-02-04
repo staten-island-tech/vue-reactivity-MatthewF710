@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <div class="navbar w-[100%] bg-blue-500 static">
+  <div class="navbar flex justify-between w-[100%] bg-blue-500 static">
     <details class="dropdown bg-blue-500">
       <summary class="btn m-1 bg-base-200">
         <svg
@@ -23,6 +23,6 @@
         <li><a>Ar</a></li>
       </ul>
     </details>
-    <h1 class="left-[50%]">Hello</h1>
+    <h1 class="">Hello</h1>
   </div>
 </template>

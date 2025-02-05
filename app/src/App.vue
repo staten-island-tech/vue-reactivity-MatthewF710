@@ -1,28 +1,24 @@
 <script setup></script>
 <template>
-  <div class="navbar flex justify-between w-[100%] bg-blue-500 static">
-    <details class="dropdown bg-blue-500">
-      <summary class="btn m-1 bg-base-200">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </summary>
-      <ul class="menu dropdown-content rounded-box z-[1] w-52 p-2 shadow">
-        <li><a>Filler</a></li>
-        <li><a>Ar</a></li>
-      </ul>
-    </details>
-    <h1 class="">Hello</h1>
+  <div>
+    <div class="navbar flex justify-between w-[100%] bg-ALDIdarkblue static">
+      <figure>
+        <img
+          class="h-[5rem]"
+          src="https://corporate.aldi.us/fileadmin/fm-dam/logos/ALDI_2017.png"
+          alt="ALDIs"
+        />
+      </figure>
+      <h1 class="">Hello</h1>
+    </div>
+    <ul class="steps">
+      <li data-content="?" class="step step-ALDIorange">Step 1</li>
+      <li data-content="!" class="step">Step 2</li>
+      <li data-content="✓" class="step">Step 3</li>
+      <li data-content="✕" class="step">Step 4</li>
+      <li data-content="★" class="step">Step 5</li>
+      <li data-content="" class="step">Step 6</li>
+      <li data-content="●" class="step">Step 7</li>
+    </ul>
   </div>
 </template>

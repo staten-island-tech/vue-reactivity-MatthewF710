@@ -16,8 +16,12 @@
       <li data-content="?" class="step">Step 3</li>
       <li data-content="?" class="step">Step 4</li>
     </ul>
+    <div class="">
+      <displaycard v-for="item in items" :key="item.name" :item="item" />
+    </div>
   </div>
 </template>
 <script setup>
+import displaycard from './components/ItemCard.vue'
 import { items } from './array.js'
 </script>

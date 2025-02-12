@@ -3,7 +3,7 @@
     <div
       class="navbar bg-ALDIdarkblue w-full px-6 py-3 flex justify-between items-center shadow-lg"
     >
-      <figure>
+      <figure @click="increaseBalance()">
         <img
           class="h-16"
           src="https://corporate.aldi.us/fileadmin/fm-dam/logos/ALDI_2017.png"
@@ -27,7 +27,7 @@
       </ul>
     </div>
     <div class="flex flex-wrap justify-center gap-[10rem] py-6">
-      <displaycard v-for="item in items" :key="item.name" :item="item">
+      <displaycard v-for="item in selectedItems" :key="item.name" :item="item">
         <button class="btn btn-primary" @click="addToCart(item.name)">Shop</button>
       </displaycard>
     </div>
@@ -39,12 +39,15 @@ import displaycard from './components/displaycard.vue'
 import { items } from './array.js'
 const selectedItems = ref([])
 const addedItems = ref([])
-let initbalance = 50
+let initbalance = ref(50)
 function addToCart(selectedItem) {
   console.log(selectedItem)
   addedItems.value.push(selectedItem)
 }
-while (selectedItems.length < 3) {
+function increaseBalance() {
+  initbalance.value += 5
+}
+while (selectedItems.value.length < 3) {
   let randomNum = Math.floor(Math.random() * items.length)
   if (!items[randomNum].value.includes(items[randomNum].value)) {
     items[randomNum].value.push(items[randomNum].value)

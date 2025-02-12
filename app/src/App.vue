@@ -11,8 +11,9 @@
         />
       </figure>
       <h1 class="text-ALDIyellow text-3xl font-bold">Shop at ALDI!</h1>
+      <h2 class="text-2xl font-bold text-white">Balance: ${{ initbalance }}</h2>
       <div class="dropdown dropdown-end">
-        <button tabindex="0" class="btn btn-primary">Menu</button>
+        <button tabindex="0" class="btn btn-primary">Instructions</button>
         <ul tabindex="0" class="dropdown-content menu bg-white shadow-md rounded-box w-40 mt-2">
           <li><a>Item 1</a></li>
           <li><a>Item 2</a></li>
@@ -39,7 +40,7 @@ import displaycard from './components/displaycard.vue'
 import { items } from './array.js'
 const selectedItems = ref([])
 const addedItems = ref([])
-let initbalance = ref(50)
+const initbalance = ref(50)
 function addToCart(selectedItem) {
   console.log(selectedItem)
   addedItems.value.push(selectedItem)
@@ -49,8 +50,8 @@ function increaseBalance() {
 }
 while (selectedItems.value.length < 3) {
   let randomNum = Math.floor(Math.random() * items.length)
-  if (!items[randomNum].value.includes(items[randomNum].value)) {
-    items[randomNum].value.push(items[randomNum].value)
+  if (!((item) => item.name === items[randomNum].name)) {
+    selectedItems.value.push(items[randomNum])
   }
 }
 </script>

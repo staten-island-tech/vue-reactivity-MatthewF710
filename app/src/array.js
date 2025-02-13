@@ -71,4 +71,10 @@ export const items = [
     price: 40.99,
     image_link: '/gastank.png',
   },
+  {
+    name: 'Mustard',
+    ALDI_meter: 2,
+    price: 3.99,
+    image_link: '/mustard.png',
+  },
 ]

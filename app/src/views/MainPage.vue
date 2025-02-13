@@ -32,7 +32,9 @@
       <h1 class="text-ALDIyellow text-3xl font-ALDIFont">Collected Items:</h1>
     </div>
     <div class="flex flex-wrap justify-center gap-[10rem] py-6">
-      <h1>for bought items</h1>
+      <displaycard v-for="item in addedItems" :key="item.name" :item="item">
+        <h1>Shopped</h1>
+      </displaycard>
     </div>
   </div>
 </template>
@@ -45,15 +47,18 @@ const selectedItems = reactive([])
 const addedItems = reactive([])
 const balance = ref(0)
 function addToCart(selectedItem) {
-  addedItems.push(selectedItem)
-  console.log(addedItems)
+  if (balance.value > selectedItem.price && !addedItems.includes(selectedItem)) {
+    balance.value -= selectedItem.price
+    //balance.value = Math.round()
+    addedItems.push(selectedItem)
+  }
 }
 function increaseBalance() {
   balance.value += 1
 }
 while (selectedItems.length < 3) {
   let randomNum = Math.floor(Math.random() * items.length)
-  if (!selectedItems.includes(items[randomNum])) {
+  if (!selectedItems.includes(items[randomNum]) && !addedItems.includes(items[randomNum])) {
     selectedItems.push(items[randomNum])
   }
 }

@@ -42,14 +42,13 @@
 import { ref, reactive } from 'vue'
 import displaycard from '../components/displaycard.vue'
 import NavBar from '../components/NavBar.vue'
-import { items } from '../array.js'
+import { items } from '../components/array.js'
 const selectedItems = reactive([])
 const addedItems = reactive([])
 const balance = ref(0)
 function addToCart(selectedItem) {
   if (balance.value > selectedItem.price && !addedItems.includes(selectedItem)) {
-    balance.value -= selectedItem.price
-    //balance.value = Math.round()
+    balance.value = Math.round(balance.value - selectedItem.price)
     addedItems.push(selectedItem)
   }
 }

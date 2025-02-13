@@ -4,12 +4,19 @@ export default {
   theme: {
     colors: {
       ALDIdarkblue: '#001f78',
-      ALDIlightblue: '#00b5db',
+      ALDIblue: '#305464',
       ALDIred: '#f03d14',
       ALDIorange: '#fc6c0c',
       ALDIyellow: '#ffbf45',
+      ALDIblack: '#000000',
+      ALDIwhite: '#ffffff',
+      ALDIgray: '#20242c',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        ALDIFont: ['Darumadrop One', 'sans-serif'],
+      },
+    },
   },
   plugins: [require('daisyui')],
 }

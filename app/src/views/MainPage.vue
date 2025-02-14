@@ -3,7 +3,7 @@
     <NavBar></NavBar>
     <div class="flex justify-center pt-[3rem] pb-[3rem]">
       <div class="card bg-ALDIblue w-96 shadow-xl">
-        <div class="card-body items-center text-center border-2 rounded-3xl">
+        <div class="card-body items-center text-center border-2">
           <h2 class="text-2xl font-bold text-ALDIyellow">ALDI Bucks: {{ balance }}</h2>
           <div class="flex justify-center py-6">
             <ul class="steps">
@@ -12,28 +12,47 @@
             </ul>
           </div>
           <div class="card-actions">
-            <button class="btn bg-ALDIorange text-ALDIblack" @click="increaseBalance()">
+            <button
+              class="btn bg-ALDIorange text-ALDIblack border-[.1rem] border-ALDIblack hover:bg-ALDIorange hover:border-ALDIblack"
+              @click="increaseBalance()"
+            >
               Click Here!
             </button>
           </div>
         </div>
       </div>
     </div>
-    <h1>add refresh items btn somewhere lol</h1>
-    <div class="flex justify-center pt-[1rem] pb-[1rem]">
+    <div class="flex justify-center pt-[2rem] pb-[1rem]">
+      <button
+        class="btn bg-ALDIorange text-ALDIblack border-[.1rem] border-ALDIblack hover:bg-ALDIorange hover:border-ALDIblack"
+      >
+        Refresh
+      </button>
+    </div>
+    <div class="flex justify-center">
       <h1 class="text-ALDIyellow text-3xl font-ALDIFont">Shop Items:</h1>
     </div>
-    <div class="flex flex-wrap justify-center gap-[10rem] py-6">
+    <div class="flex flex-wrap justify-center gap-[10rem] py-[3rem]">
       <displaycard v-for="item in selectedItems" :key="item.name" :item="item">
-        <button class="btn btn-primary" @click="addToCart(item)">Shop</button>
+        <button
+          class="btn btn-primary border-[.1rem] border-ALDIblack hover:border-ALDIblack"
+          @click="addToCollection(item)"
+        >
+          Shop
+        </button>
       </displaycard>
     </div>
     <div class="flex justify-center pt-[1rem] pb-[1rem]">
       <h1 class="text-ALDIyellow text-3xl font-ALDIFont">Collected Items:</h1>
     </div>
     <div class="flex flex-wrap justify-center gap-[10rem] py-6">
-      <displaycard v-for="item in addedItems" :key="item.name" :item="item">
-        <h1>Shopped</h1>
+      <displaycard v-for="item in collectedItems" :key="item.name" :item="item">
+        <button
+          class="btn bg-ALDIred border-[.1rem] border-ALDIblack hover:bg-ALDIred hover:border-ALDIblack"
+          @click="removeFromCollection(item)"
+        >
+          (Un)Shop
+        </button>
       </displaycard>
     </div>
   </div>
@@ -44,21 +63,25 @@ import displaycard from '../components/displaycard.vue'
 import NavBar from '../components/NavBar.vue'
 import { items } from '../array.js'
 const selectedItems = reactive([])
-const addedItems = reactive([])
+const collectedItems = reactive([])
 const balance = ref(0)
-function addToCart(selectedItem) {
-  if (balance.value > selectedItem.price && !addedItems.includes(selectedItem)) {
-    balance.value -= selectedItem.price
-    //balance.value = Math.round()
-    addedItems.push(selectedItem)
+function addToCollection(selectedItem) {
+  if (balance.value > selectedItem.price && !collectedItems.includes(selectedItem)) {
+    balance.value = Math.round(balance.value - selectedItem.price)
+    collectedItems.push(selectedItem)
+    selectedItems.filter((item) => item != selectedItem) //fix this
   }
+}
+function removeFromCollection(selectedItem) {
+  balance.value = Math.round(balance.value + selectedItem.price)
+  collectedItems.filter((item) => item != selectedItem) //fix this
 }
 function increaseBalance() {
   balance.value += 1
 }
 while (selectedItems.length < 3) {
   let randomNum = Math.floor(Math.random() * items.length)
-  if (!selectedItems.includes(items[randomNum]) && !addedItems.includes(items[randomNum])) {
+  if (!selectedItems.includes(items[randomNum]) && !collectedItems.includes(items[randomNum])) {
     selectedItems.push(items[randomNum])
   }
 }

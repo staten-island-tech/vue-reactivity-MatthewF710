@@ -61,7 +61,7 @@
 import { ref, reactive } from 'vue'
 import displaycard from '../components/displaycard.vue'
 import NavBar from '../components/NavBar.vue'
-import { items } from '../array.js'
+import { items } from '../components/array.js'
 const selectedItems = reactive([])
 const collectedItems = reactive([])
 const balance = ref(0)

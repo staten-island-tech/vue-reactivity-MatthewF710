@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card h-[40vh] w-[40vh] bg-ALDIblue image-full shadow-xl self-auto border-2 border-ALDIred rounded-lg border-solid overflow-hidden"
+    class="card h-[40vh] w-[40vh] bg-ALDIblue image-full shadow-xl self-aut rounded-lg border-2 border-ALDIred border-solid overflow-hidden"
   >
     <figure class="flex justify-center items-center h-1/2">
       <img class="h-full object-contain" :src="item.image_link" alt="Product" />

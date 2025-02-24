@@ -12,11 +12,22 @@
       <button tabindex="0" class="btn btn-primary">Instructions</button>
       <ul
         tabindex="0"
-        class="dropdown-content menu bg-ALDIwhite shadow-md rounded-box w-40 mt-2 border-2 border-ALDIblack space-y-[.5rem]"
+        class="dropdown-content menu bg-ALDIgray shadow-md rounded-box w-[30rem] mt-2 border-2 border-ALDIblack space-y-[.5rem]"
       >
-        <li class="bg-ALDIblue rounded"><a>Click to farm ALDI bucks!</a></li>
+        <li class="bg-ALDIblue rounded border-1 border-ALDIblack">
+          <a>Click to farm ALDI bucks!</a>
+        </li>
+        <li class="bg-ALDIblue rounded border-1 border-ALDIblack">
+          <a
+            >The "ALDI meter" indicates how much of a multiplier each item will add to your
+            clicks!</a
+          >
+        </li>
         <li class="bg-ALDIblue rounded">
-          <a>Buy all the items to have officially shopped at ALDIs!</a>
+          <a
+            >Buy all the items to have officially shopped at ALDIs! (once nothing appears after
+            refresh, everything has been bought)</a
+          >
         </li>
       </ul>
     </div>

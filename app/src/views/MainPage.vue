@@ -63,9 +63,9 @@ import { ref, reactive } from 'vue'
 import displaycard from '../components/displaycard.vue'
 import NavBar from '../components/NavBar.vue'
 import { items } from '../components/array.js'
-const allItems = reactive(items)
-const selectedItems = reactive([])
-const collectedItems = reactive([])
+let allItems = reactive(items)
+let selectedItems = reactive([])
+let collectedItems = reactive([])
 const balance = ref(0)
 const clickMultiplier = ref(1)
 function shopRefresh(itemsLeft) {
@@ -79,6 +79,7 @@ function shopRefresh(itemsLeft) {
         selectedItems.push(shopItem)
       }
     }
+    console.log(selectedItems)
   } else {
     for (let i = 0; i < allItems.length; i++) {
       selectedItems.push(allItems[i])
@@ -90,23 +91,15 @@ function addToCollection(selectedItem) {
     balance.value = Math.round(balance.value - selectedItem.price)
     clickMultiplier.value += selectedItem.ALDI_meter / 10
     collectedItems.push(selectedItem)
-    selectedItems.splice(
-      0,
-      selectedItems.length,
-      ...selectedItems.filter((item) => item !== selectedItem),
-    ) //updating array with splice to not break reactivity
-    allItems.splice(0, allItems.length, ...allItems.filter((item) => item !== selectedItem)) //updating array with splice to not break reactivity
+    selectedItems = selectedItems.filter((item) => item !== selectedItem)
+    allItems = allItems.filter((item) => item !== selectedItem)
   }
 }
 function removeFromCollection(selectedItem) {
   balance.value = Math.round(balance.value + selectedItem.price)
   allItems.push(selectedItem)
   clickMultiplier.value -= selectedItem.ALDI_meter / 10
-  collectedItems.splice(
-    0,
-    collectedItems.length,
-    ...collectedItems.filter((item) => item !== selectedItem),
-  ) //updating array with splice to not break reactivity
+  collectedItems = collectedItems.filter((item) => item !== selectedItem)
 }
 function increaseBalance() {
   balance.value += 1 * clickMultiplier.value

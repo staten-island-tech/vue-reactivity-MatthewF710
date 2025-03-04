@@ -63,9 +63,9 @@ import { ref, reactive } from 'vue'
 import displaycard from '../components/displaycard.vue'
 import NavBar from '../components/NavBar.vue'
 import { items } from '../components/array.js'
-let allItems = reactive(items)
-let selectedItems = reactive([])
-let collectedItems = reactive([])
+const allItems = reactive(items)
+const selectedItems = reactive([])
+const collectedItems = reactive([])
 const balance = ref(0)
 const clickMultiplier = ref(1)
 function shopRefresh(itemsLeft) {
@@ -79,7 +79,6 @@ function shopRefresh(itemsLeft) {
         selectedItems.push(shopItem)
       }
     }
-    console.log(selectedItems)
   } else {
     for (let i = 0; i < allItems.length; i++) {
       selectedItems.push(allItems[i])
@@ -87,19 +86,26 @@ function shopRefresh(itemsLeft) {
   }
 }
 function addToCollection(selectedItem) {
-  if (balance.value > selectedItem.price && !collectedItems.includes(selectedItem)) {
+  if (balance.value >= selectedItem.price && !collectedItems.includes(selectedItem)) {
     balance.value = Math.round(balance.value - selectedItem.price)
     clickMultiplier.value += selectedItem.ALDI_meter / 10
     collectedItems.push(selectedItem)
-    selectedItems = selectedItems.filter((item) => item !== selectedItem)
-    allItems = allItems.filter((item) => item !== selectedItem)
+    const selectedItemIndex = selectedItems.indexOf(selectedItem)
+    if (selectedItemIndex !== -1) {
+      selectedItems.splice(selectedItemIndex, 1)
+    }
+    const allItemIndex = allItems.indexOf(selectedItem)
+    if (allItemIndex !== -1) {
+      allItems.splice(allItemIndex, 1)
+    }
   }
 }
 function removeFromCollection(selectedItem) {
   balance.value = Math.round(balance.value + selectedItem.price)
-  allItems.push(selectedItem)
   clickMultiplier.value -= selectedItem.ALDI_meter / 10
-  collectedItems = collectedItems.filter((item) => item !== selectedItem)
+  const collectedItemIndex = collectedItems.indexOf(selectedItem)
+  if (collectedItemIndex !== -1) collectedItems.splice(collectedItemIndex, 1)
+  allItems.push(selectedItem)
 }
 function increaseBalance() {
   balance.value += 1 * clickMultiplier.value
